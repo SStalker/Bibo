@@ -1,0 +1,11 @@
+build/
+dist/
+nbproject/private
+
+# Class Files #
+*.class
+
+# Package Files #
+*.jar
+*.war
+*.ear
