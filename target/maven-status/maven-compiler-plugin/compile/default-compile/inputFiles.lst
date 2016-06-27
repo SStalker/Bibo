@@ -1,0 +1,13 @@
+/home/sstalker/Git/bibo/src/main/java/de/hsos/kbse/bibo/entity/Author.java
+/home/sstalker/Git/bibo/src/main/java/de/hsos/kbse/bibo/entity/Profile.java
+/home/sstalker/Git/bibo/src/main/java/de/hsos/kbse/bibo/entity/Login.java
+/home/sstalker/Git/bibo/src/main/java/de/hsos/kbse/bibo/boundary/LoginModel.java
+/home/sstalker/Git/bibo/src/main/java/Main.java
+/home/sstalker/Git/bibo/src/main/java/de/hsos/kbse/bibo/controller/MemberController.java
+/home/sstalker/Git/bibo/src/main/java/de/hsos/kbse/bibo/controller/MemberRepository.java
+/home/sstalker/Git/bibo/src/main/java/de/hsos/kbse/bibo/entity/Booking.java
+/home/sstalker/Git/bibo/src/main/java/de/hsos/kbse/bibo/entity/Verlag.java
+/home/sstalker/Git/bibo/src/main/java/de/hsos/kbse/bibo/entity/Member.java
+/home/sstalker/Git/bibo/src/main/java/de/hsos/kbse/bibo/entity/Book.java
+/home/sstalker/Git/bibo/src/main/java/de/hsos/kbse/bibo/entity/Description.java
+/home/sstalker/Git/bibo/src/main/java/de/hsos/kbse/bibo/entity/Address.java
