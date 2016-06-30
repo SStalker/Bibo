@@ -27,7 +27,7 @@ public class Login implements Serializable{
     @Size(min = 8, max = 32)
     private String password;
     
-    @Size(min = 8, max = 32)
+    @Size(min = 4, max = 32)
     private String username;
     
     @Pattern(regexp = "^[A-Z0-9._%+-]+@[A-Z0-9.-]+\\.[A-Z]{2,6}$")

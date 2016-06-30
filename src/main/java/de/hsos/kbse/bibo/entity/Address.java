@@ -10,6 +10,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.validation.constraints.Digits;
+import javax.validation.constraints.Min;
 import javax.validation.constraints.Size;
 
 /**
@@ -23,7 +25,8 @@ public class Address implements Serializable{
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int id; 
     
-    @Size(min=5, max=5)
+    @Min(10000)
+    @Digits(integer = 5, fraction = 0)
     private int plz; // 12345
     
     @Size(min = 3, max = 32)
@@ -31,8 +34,8 @@ public class Address implements Serializable{
     
     @Size(min = 3, max = 32)
     private String street; // Keksstr
-    
-    @Size(min = 3, max = 8)
+
+    @Size(min = 1, max = 5)
     private String streetnumber; // 4a
     
     public Address() {
