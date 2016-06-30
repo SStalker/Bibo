@@ -10,6 +10,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Lob;
 import javax.persistence.ManyToOne;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
@@ -22,10 +23,11 @@ import javax.validation.constraints.Size;
 class Description implements Serializable{
     
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.TABLE)
     private int id;
     
     @Size(max = 2048)
+    @Lob
     private String text;
     
     @NotNull
@@ -34,7 +36,7 @@ class Description implements Serializable{
     
     @NotNull
     @ManyToOne
-    private Verlag verlag;
+    private Publisher verlag;
 
     public Description() {
     }
