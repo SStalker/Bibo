@@ -6,11 +6,16 @@
 package de.hsos.kbse.bibo.boundary;
 
 import de.hsos.kbse.bibo.controller.MemberRepository;
+import de.hsos.kbse.bibo.entity.Address;
+import de.hsos.kbse.bibo.entity.Login;
 import de.hsos.kbse.bibo.entity.Member;
+import de.hsos.kbse.bibo.entity.Profile;
 import java.io.Serializable;
 import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
+import javax.validation.constraints.Digits;
+import javax.validation.constraints.Min;
 import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
 
@@ -21,30 +26,27 @@ import javax.validation.constraints.Size;
 @Named(value="registerModel")
 @RequestScoped
 public class RegisterModel implements Serializable{
-    
-    //@Inject
-    //private BestellungController ordercontroller;
-    
+ 
     @Inject
-    private MemberRepository kController;
+    private MemberRepository mController;
     
     @Size(min = 3, max = 32)
     private String firstname;
     @Size(min = 3, max = 32)
     private String lastname;
-    @Size(min=5, max=5)
-    private int plz; // 12345
+    @Digits(integer = 5, fraction = 0)
+    private int plz; 
     @Size(min = 3, max = 32)
-    private String town; // Cookie
+    private String town; 
     @Size(min = 3, max = 32)
-    private String street; // Keksstr
-    @Size(min = 3, max = 8)
-    private String streetnumber; // 4a    
+    private String street; 
+    @Size(min = 1, max = 5)
+    private String streetnumber; 
     @Size(min = 8, max = 32)
     private String password;
-    @Size(min = 8, max = 32)
+    @Size(min = 4, max = 32)
     private String username;
-    @Pattern(regexp = "^[A-Z0-9._%+-]+@[A-Z0-9.-]+\\.[A-Z]{2,6}$")
+    @Pattern(regexp = "^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,6}$")
     private String email;
     
     public RegisterModel() {
@@ -123,7 +125,19 @@ public class RegisterModel implements Serializable{
     }
     
     public String registerMember(){
-        return "";
+        System.out.println(password);
+        Address addr = new Address(plz, town, street, streetnumber);
+        Profile pro = new Profile(firstname, lastname, addr);
+        Login log = new Login(password, username, email);
+        Member newMember = new Member();
+        newMember.setLogin(log);
+        newMember.setProfile(pro);
+        try{
+            mController.insert(newMember);
+        }catch(Exception e){
+            System.err.println(e.getMessage());
+        }
+        return "/index.html";
     }
 
 }

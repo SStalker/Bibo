@@ -23,9 +23,8 @@ public class Address implements Serializable{
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private int id; 
+    private int id;
     
-    @Min(10000)
     @Digits(integer = 5, fraction = 0)
     private int plz; // 12345
     

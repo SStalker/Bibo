@@ -10,11 +10,7 @@
         <!-- Javascript -->
         <script src="https://code.jquery.com/jquery-2.2.3.min.js"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
-        <script>
-            $(document).ready(function(){
-               console.log('Hello');
-            });
-        </script>
+        <h:outputScript library="js" name="validate.js" />
     </h:head>
     <h:body class="container-fluid">
         <h1>Als Mitglied registrieren</h1>
@@ -59,18 +55,18 @@
                     </div>
                     <div class="form-group">
                         <label for="pass">Passwort</label>
-                        <h:inputText id="pass" class="form-control" required="true" value="#{registerModel.password}"></h:inputText>
+                        <h:inputText id="pass" class="form-control" required="true" autocomplete="off" value="#{registerModel.password}"></h:inputText>
                     </div>
                     <div class="form-group">
                         <label for="pass2">Passwort <small>(Wiederholung)</small></label>
-                        <h:inputText id="pass2" class="form-control" required="true" ></h:inputText>
+                        <h:inputText id="pass2" class="form-control" onkeyup="validatePass()" autocomplete="off" required="true" ></h:inputText>
                     </div>
                 </div>
             </div>
             
-            <h:commandButton class="btn btn-primary" value="Registrieren"></h:commandButton>
+            <h:commandButton id="register-button" class="btn btn-primary" action="#{registerModel.registerMember()}" value="Registrieren"></h:commandButton>
             
-            <h:panelGrid columns="2">
+            <!--h:panelGrid columns="2">
                 <h:column>
                     <h:outputLabel value="Name:"></h:outputLabel>
                 </h:column>
@@ -135,7 +131,7 @@
                 <h:column>
                     <h:inputText></h:inputText>
                 </h:column>
-            </h:panelGrid>
+            </h:panelGrid-->
         </h:form>
     </h:body>
 </html>

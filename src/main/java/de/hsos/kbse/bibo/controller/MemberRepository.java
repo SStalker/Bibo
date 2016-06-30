@@ -29,7 +29,12 @@ public class MemberRepository implements Serializable{
     EntityManager em;
     
     public void insert(Member user){
-        em.persist(user);
+        try{
+            em.persist(user);
+        }catch(Exception e){
+            System.err.println(e.getMessage());
+        }
+        
     }
     
     public void update(Member kunde){

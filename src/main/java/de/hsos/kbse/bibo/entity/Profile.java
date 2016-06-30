@@ -6,6 +6,7 @@
 package de.hsos.kbse.bibo.entity;
 
 import java.io.Serializable;
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -33,7 +34,7 @@ public class Profile implements Serializable{
     @Size(min = 3, max = 32)
     private String lastname;
     
-    @OneToOne
+    @OneToOne(cascade = CascadeType.ALL)
     private Address address;
 
     public Profile() {
@@ -44,6 +45,32 @@ public class Profile implements Serializable{
         this.lastname = lastname;
         this.address = address;
     }
+
+    public String getFirstname() {
+        return firstname;
+    }
+
+    public void setFirstname(String firstname) {
+        this.firstname = firstname;
+    }
+
+    public String getLastname() {
+        return lastname;
+    }
+
+    public void setLastname(String lastname) {
+        this.lastname = lastname;
+    }
+
+    public Address getAddress() {
+        return address;
+    }
+
+    public void setAddress(Address address) {
+        this.address = address;
+    }
+    
+    
     
     
 }
