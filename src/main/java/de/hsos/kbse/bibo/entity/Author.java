@@ -19,67 +19,67 @@ import javax.validation.constraints.Size;
 @Entity
 class Author implements Serializable{
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.TABLE)
     private int id;
     
     @Size(min = 3, max = 32)
-    private String nachname;
+    private String lastname;
     
     @Size(min = 3, max = 32)
-    private String vorname;
+    private String firstname;
     
     @Size(min = 1, max = 3)
-    private String kuerzel;
+    private String acronym;
 
     public Author() {
     }
 
-    public Author(int id, String nachname, String vorname, String kuerzel) {
-        this.id = id;        
-        this.nachname = nachname;
-        this.vorname = vorname;
-        this.kuerzel = kuerzel;
+    public Author(int id, String lastname, String firstname, String acronym) {
+        this.id = id;
+        this.lastname = lastname;
+        this.firstname = firstname;
+        this.acronym = acronym;
     }
 
     /**
-     * @return the nachname
+     * @return the lastname
      */
-    public String getNachname() {
-        return nachname;
+    public String getLastname() {
+        return lastname;
     }
 
     /**
-     * @param nachname the nachname to set
+     * @param lastname the lastname to set
      */
-    public void setNachname(String nachname) {
-        this.nachname = nachname;
+    public void setLastname(String lastname) {
+        this.lastname = lastname;
     }
 
     /**
-     * @return the vorname
+     * @return the firstname
      */
-    public String getVorname() {
-        return vorname;
+    public String getFirstname() {
+        return firstname;
     }
 
     /**
-     * @param vorname the vorname to set
+     * @param firstname the firstname to set
      */
-    public void setVorname(String vorname) {
-        this.vorname = vorname;
+    public void setFirstname(String firstname) {
+        this.firstname = firstname;
     }
 
     /**
-     * @return the kuerzel
+     * @return the acronym
      */
-    public String getKuerzel() {
-        return kuerzel;
+    public String getAcronym() {
+        return acronym;
     }
 
     /**
-     * @param kuerzel the kuerzel to set
+     * @param acronym the acronym to set
      */
-    public void setKuerzel(String kuerzel) {
-        this.kuerzel = kuerzel;
+    public void setAcronym(String acronym) {
+        this.acronym = acronym;
     }
 }

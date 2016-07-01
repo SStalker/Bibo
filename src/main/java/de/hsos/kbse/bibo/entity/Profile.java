@@ -25,7 +25,7 @@ public class Profile implements Serializable{
     private Member member_profile;
     
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.TABLE)
     private int id;
     
     @Size(min = 3, max = 32)
@@ -46,31 +46,45 @@ public class Profile implements Serializable{
         this.address = address;
     }
 
+    /**
+     * @return the firstname
+     */
     public String getFirstname() {
         return firstname;
     }
 
+    /**
+     * @param firstname the firstname to set
+     */
     public void setFirstname(String firstname) {
         this.firstname = firstname;
     }
 
+    /**
+     * @return the lastname
+     */
     public String getLastname() {
         return lastname;
     }
 
+    /**
+     * @param lastname the lastname to set
+     */
     public void setLastname(String lastname) {
         this.lastname = lastname;
     }
 
+    /**
+     * @return the address
+     */
     public Address getAddress() {
         return address;
     }
 
+    /**
+     * @param address the address to set
+     */
     public void setAddress(Address address) {
         this.address = address;
     }
-    
-    
-    
-    
 }

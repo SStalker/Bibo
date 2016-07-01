@@ -17,18 +17,18 @@ import javax.validation.constraints.Size;
  * @author sstalker
  */
 @Entity
-class Verlag implements Serializable{
+class Publisher implements Serializable{
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.TABLE)
     private int id;
     
     @Size(min = 3, max = 32)
     private String name;
 
-    public Verlag() {
+    public Publisher() {
     }
 
-    public Verlag(int id, String name) {
+    public Publisher(int id, String name) {
         this.id = id;
         this.name = name;
     }

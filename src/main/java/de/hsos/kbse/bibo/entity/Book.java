@@ -23,7 +23,7 @@ import javax.validation.constraints.Size;
 public class Book implements Serializable{
     
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.TABLE)
     @Pattern(regexp = "(?=[-0-9xX]{13}$)")
     @NotNull
     private String isbn;
