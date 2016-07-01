@@ -135,7 +135,7 @@ public class RegisterModel implements Serializable{
         try{
             mController.insert(newMember);
         }catch(Exception e){
-            System.err.println(e.getMessage());
+            return "";
         }
         return "/index.html";
     }

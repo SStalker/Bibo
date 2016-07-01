@@ -22,7 +22,7 @@ import javax.validation.constraints.Size;
 public class Address implements Serializable{
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.TABLE)
     private int id;
     
     @Digits(integer = 5, fraction = 0)
