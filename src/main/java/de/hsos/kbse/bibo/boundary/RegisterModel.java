@@ -137,10 +137,16 @@ public class RegisterModel implements Serializable{
         newMember.setLogin(log);
         newMember.setProfile(pro);
         try{
-            mController.insert(newMember);
-                
+            //finde Login
+            if(mController.findLogins(log) == null){
+                //füge mitglied hinzu
+                mController.insert(newMember);
+            }else{
+                FacesContext.getCurrentInstance().addMessage("register-form",new FacesMessage("Email, oder Username existiert bereits"));
+                return "";
+            }
         }catch(Exception e){
-            FacesContext.getCurrentInstance().addMessage("register-form", new FacesMessage(e.getMessage()));
+            FacesContext.getCurrentInstance().addMessage("register-form",new FacesMessage("Interner Fehler beim registrieren "));
             return "";
         }
         

@@ -33,12 +33,8 @@ public class MemberRepository implements Serializable{
     @PersistenceContext(unitName = "bibo", type=PersistenceContextType.TRANSACTION)
     EntityManager em;
     
-    public void insert(Member user) throws EntityExistsException {
-        try{
+    public void insert(Member user) {
             em.persist(user);
-        }catch(PersistenceException e){
-            throw new EntityExistsException(e.getMessage());
-        }
     }
     
     public void update(Member kunde){
@@ -74,6 +70,16 @@ public class MemberRepository implements Serializable{
                 
         return results.get(0);
     }*/
+    
+    public List<Login> findLogins(Login login){
+        List<Login> result = em.createQuery("SELECT l FROM Login l WHERE l.username LIKE :name OR l.email LIKE :mail").setParameter("name", login.getUsername()).setParameter("mail", login.getEmail()).getResultList();
+        
+        if(result.isEmpty()){
+            return null;
+        }else{
+            return result;
+        }
+    } 
     
     public void delete(int uid){
         Member user = findById(uid);
