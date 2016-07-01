@@ -6,6 +6,7 @@
 package de.hsos.kbse.bibo.entity;
 
 import java.io.Serializable;
+import javax.enterprise.context.Dependent;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -19,10 +20,11 @@ import javax.validation.constraints.Size;
  * @author sstalker
  */
 @Entity
+@Dependent
 public class Address implements Serializable{
 
     @Id
-    @GeneratedValue(strategy = GenerationType.TABLE)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
     
     @Digits(integer = 5, fraction = 0)

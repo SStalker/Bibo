@@ -2,7 +2,7 @@
 INSERT INTO LOGIN VALUES(1, 'email@email.de', 0, 'password', 'username')
 INSERT INTO ADDRESS VALUES(1, 45455, 'Straßße', '2a', 'Stadt ui')
 INSERT INTO PROFILE VALUES(1, 'Raphael', 'Grewe', 1)
-INSERT INTO T_MEMBER VALUES(1, 1, 1)
+INSERT INTO MEMBER VALUES(1, 1, 1)
 
 INSERT INTO AUTHOR VALUES(1, 'DW', 'Weil', 'Dirk')
 INSERT INTO AUTHOR VALUES(2, 'MK', 'Michael', 'Kurz')

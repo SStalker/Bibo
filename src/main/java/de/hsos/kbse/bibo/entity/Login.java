@@ -6,6 +6,7 @@
 package de.hsos.kbse.bibo.entity;
 
 import java.io.Serializable;
+import javax.enterprise.context.Dependent;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -20,11 +21,12 @@ import javax.validation.constraints.Size;
  * @author sstalker
  */
 @Entity
+@Dependent
 @Table(uniqueConstraints = @UniqueConstraint(columnNames = {"username","email"}))
 public class Login implements Serializable{
     
     @Id
-    @GeneratedValue(strategy = GenerationType.TABLE)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
     
     @Size(min = 8, max = 32)

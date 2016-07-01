@@ -6,6 +6,7 @@
 package de.hsos.kbse.bibo.entity;
 
 import java.io.Serializable;
+import javax.enterprise.context.Dependent;
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -19,11 +20,12 @@ import javax.persistence.Table;
  * @author sstalker
  */
 @Entity
-@Table(name = "t_member")
+@Dependent
+//@Table(name = "T_MEMBER")
 public class Member implements Serializable{
     
     @Id
-    @GeneratedValue(strategy = GenerationType.TABLE)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
     @OneToOne(cascade = CascadeType.ALL)

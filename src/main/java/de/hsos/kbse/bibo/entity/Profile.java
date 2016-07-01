@@ -6,6 +6,7 @@
 package de.hsos.kbse.bibo.entity;
 
 import java.io.Serializable;
+import javax.enterprise.context.Dependent;
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -19,13 +20,14 @@ import javax.validation.constraints.Size;
  * @author sstalker
  */
 @Entity
+@Dependent
 public class Profile implements Serializable{
 
     @OneToOne(mappedBy = "profile")
     private Member member_profile;
     
     @Id
-    @GeneratedValue(strategy = GenerationType.TABLE)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
     
     @Size(min = 3, max = 32)
