@@ -12,8 +12,12 @@ import de.hsos.kbse.bibo.entity.Member;
 import de.hsos.kbse.bibo.entity.Profile;
 import java.io.Serializable;
 import javax.enterprise.context.RequestScoped;
+import javax.faces.application.FacesMessage;
+import javax.faces.context.FacesContext;
 import javax.inject.Inject;
 import javax.inject.Named;
+import javax.persistence.EntityExistsException;
+import javax.persistence.PersistenceException;
 import javax.validation.constraints.Digits;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.Pattern;
@@ -134,9 +138,12 @@ public class RegisterModel implements Serializable{
         newMember.setProfile(pro);
         try{
             mController.insert(newMember);
+                
         }catch(Exception e){
+            FacesContext.getCurrentInstance().addMessage("register-form", new FacesMessage(e.getMessage()));
             return "";
         }
+        
         return "/index.html";
     }
 

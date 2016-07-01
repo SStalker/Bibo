@@ -5,14 +5,19 @@
  */
 package de.hsos.kbse.bibo.controller;
 
+import de.hsos.kbse.bibo.entity.Login;
 import de.hsos.kbse.bibo.entity.Member;
 import java.io.Serializable;
 import java.util.List;
 import javax.enterprise.context.ApplicationScoped;
+import javax.faces.application.FacesMessage;
+import javax.faces.context.FacesContext;
 import javax.inject.Named;
+import javax.persistence.EntityExistsException;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.PersistenceContextType;
+import javax.persistence.PersistenceException;
 import javax.persistence.Query;
 import javax.transaction.Transactional;
 
@@ -28,13 +33,12 @@ public class MemberRepository implements Serializable{
     @PersistenceContext(unitName = "bibo", type=PersistenceContextType.TRANSACTION)
     EntityManager em;
     
-    public void insert(Member user){
+    public void insert(Member user) throws EntityExistsException {
         try{
             em.persist(user);
-        }catch(Exception e){
-            System.err.println(e.getMessage());
+        }catch(PersistenceException e){
+            throw new EntityExistsException(e.getMessage());
         }
-        
     }
     
     public void update(Member kunde){
