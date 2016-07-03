@@ -19,26 +19,31 @@
         <!--Menu-->
         <ui:include src="menutemplate.xhtml"/>
         <div class="container-fluid">
-            <div class="panel panel-default">
-                <div class="panel-heading">Login</div>
-                <div class="panel-body">
-                    <h:form id="login-form">
-                        <div class="form-group">
-                            <label for="name">Nutzername</label>
-                            <h:inputText id="name" class="form-control" required="true" value="#{loginModel.username}"></h:inputText>
-                        </div>
-                        <div class="form-group">
-                            <label for="password">Passwort</label>
-                            <h:inputText id="password" class="form-control" required="true" value="#{loginModel.password}"></h:inputText>
-                        </div>
-                        
-                        <h:commandButton id="login-button" class="btn btn-primary" action="#{loginModel.login()}" value="Login"></h:commandButton>                        
-                    </h:form>
-                    <h:form>
-                        <h:commandButton id="register-button" class="btn btn-primary" action="register.xhtml" value="Registrieren"></h:commandButton>
-                    </h:form>
+            <h:panelGroup layout="block" rendered="#{!loginModel.loggedIn}">
+                <div class="panel panel-default">
+                    <div class="panel-heading">Login</div>
+                    <div class="panel-body">
+                        <h:form id="login-form">
+                            <div class="form-group">
+                                <label for="name">Nutzername</label>
+                                <h:inputText id="name" class="form-control" required="true" value="#{loginModel.username}"></h:inputText>
+                            </div>
+                            <div class="form-group">
+                                <label for="password">Passwort</label>
+                                <h:inputSecret id="password" class="form-control" required="true" value="#{loginModel.password}"/>
+                            </div>
+
+                            <h:commandButton id="login-button" class="btn btn-primary" action="#{loginModel.login()}" value="Login"></h:commandButton>                        
+                            <h:commandButton id="register-button" class="btn btn-primary" action="register.xhtml" value="Registrieren" immediate="true"></h:commandButton>
+                        </h:form>
+                    </div>
                 </div>
-            </div>
+            </h:panelGroup>
+            <h:panelGroup layout="block" rendered="#{loginModel.loggedIn}">
+                <h1>Willkommen bei Bibo</h1>
+                <p>Bibo ist ihre Bibliotheks Software!</p>
+                <p>Sie sind Angemeldet</p>
+            </h:panelGroup>
         </div>
     </h:body>
 </html>
