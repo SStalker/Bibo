@@ -37,4 +37,11 @@ public class BookDetailModel {
         
         return "/book.xhtml";
     }
+
+    /**
+     * @return the book
+     */
+    public Book getBook() {
+        return book;
+    }
 }

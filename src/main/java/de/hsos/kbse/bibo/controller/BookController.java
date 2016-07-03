@@ -41,4 +41,8 @@ public class BookController {
     public List<Book> findAll(){
         return repo.findAllBooks();
     }
+    
+    public void borrow(Book book){
+    
+    }
 }

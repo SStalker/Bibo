@@ -18,7 +18,37 @@
         <!--Menu-->
         <ui:include src="menutemplate.xhtml"/>
         <div class="container-fluid">
-            Hello from Facelets
+            <div class="row">
+                <div class="col-md-2"></div>
+                <div class="col-md-8">
+                    <div class="panel panel-primary">
+                        <div class="panel-heading">
+                            <h2 class="">#{bookDetailModel.book.title}</h2>
+                            
+                        </div>
+                        <div class="panel-body">
+                            <div class="row">
+                                <div class="col-md-3">
+                                    <h4>Autor:</h4>
+                                    <p>#{bookDetailModel.book.description.author.firstname} #{bookDetailModel.book.description.author.lastname}</p>
+                                    <h4>Verlag:</h4>
+                                    <p>#{bookDetailModel.book.description.publisher.name}</p>
+                                </div>
+                                <div class="col-md-9">
+                                    #{bookDetailModel.book.description.text}
+                                </div>
+                            </div>
+                        </div>
+                        <div class="panel-footer">
+                            <h:form>
+                                <h:commandLink class="btn btn-danger" value="Ausleihen">
+                                    
+                                </h:commandLink>
+                            </h:form>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </h:body>
 </html>
