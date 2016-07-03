@@ -94,4 +94,18 @@ public class Book implements Serializable{
     public void setDescription(Description description) {
         this.description = description;
     }
+
+    /**
+     * @return the isbn
+     */
+    public String getIsbn() {
+        return isbn;
+    }
+
+    /**
+     * @param isbn the isbn to set
+     */
+    public void setIsbn(String isbn) {
+        this.isbn = isbn;
+    }
 }

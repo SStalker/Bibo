@@ -1,0 +1,67 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <title>Buchausleihe Bibo</title>
+        <!-- Stylesheets -->
+        <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet"></link>
+        <h:outputStylesheet library="css" name="style.css"  />
+        <!-- Javascript -->
+        <script src="https://code.jquery.com/jquery-2.2.3.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+        <h:outputScript library="js" name="bibo.js" />
+        
+    </h:head>
+    <h:body>
+        <!--Menu-->
+        <ui:include src="menutemplate.xhtml"/>
+        <div class="container-fluid">
+            <h1>Suchergebnisse für &raquo;#{searchModel.searchString}&laquo;</h1>
+                       
+            <h:dataTable class="table table-striped" value="#{searchModel.books}" var="book">
+                <h:column>
+                    <f:facet name="header">
+                        <h:outputText value="Titel" />
+                    </f:facet>
+                    <h:outputText value="#{book.title}" />
+                </h:column>
+                
+                <h:column>
+                    <f:facet name="header">
+                        <h:outputText value="Titel" />
+                    </f:facet>
+                    <h:outputText value="#{book.title}" />
+                </h:column>
+                
+                <h:column>
+                    <f:facet name="header">
+                        <h:outputText value="Autor" />
+                    </f:facet>
+                    <h:outputText value="#{book.description.author.firstname} #{book.description.author.lastname}" />
+                </h:column>
+                
+                <h:column>
+                    <f:facet name="header">
+                        <h:outputText value="Verlag" />
+                    </f:facet>
+                    <h:outputText value="#{book.description.publisher.name}" />
+                </h:column>
+                
+                <h:column>
+                    <f:facet name="header">
+                        <h:outputText value="Aktion" />
+                    </f:facet>
+                    <h:form>
+                        <h:commandLink value="Details" class="btn btn-default" action="#{bookDetailModel.show()}">
+                            <f:param name="isbn" value="#{book.isbn}" />
+                        </h:commandLink>
+                    </h:form>
+                </h:column>
+            </h:dataTable>
+        </div>
+    </h:body>
+</html>
+

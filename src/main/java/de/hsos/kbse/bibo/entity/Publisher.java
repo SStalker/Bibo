@@ -17,7 +17,7 @@ import javax.validation.constraints.Size;
  * @author sstalker
  */
 @Entity
-class Publisher implements Serializable{
+public class Publisher implements Serializable{
     @Id
     @GeneratedValue(strategy = GenerationType.TABLE)
     private int id;

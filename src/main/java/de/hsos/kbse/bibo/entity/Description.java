@@ -20,7 +20,7 @@ import javax.validation.constraints.Size;
  * @author sstalker
  */
 @Entity
-class Description implements Serializable{
+public class Description implements Serializable{
     
     @Id
     @GeneratedValue(strategy = GenerationType.TABLE)
@@ -32,19 +32,20 @@ class Description implements Serializable{
     
     @NotNull
     @ManyToOne
-    private Author autor;
+    private Author author;
     
     @NotNull
     @ManyToOne
-    private Publisher verlag;
+    private Publisher publisher;
 
     public Description() {
     }
 
-    public Description(int id, String text, Author autor) {
+    public Description(int id, String text, Author author, Publisher publisher) {
         this.id = id;
         this.text = text;
-        this.autor = autor;
+        this.author = author;
+        this.publisher = publisher;
     }
 
     /**
@@ -62,16 +63,24 @@ class Description implements Serializable{
     }
 
     /**
-     * @return the autor
+     * @return the author
      */
-    public Author getAutor() {
-        return autor;
+    public Author getAuthor() {
+        return author;
     }
 
     /**
-     * @param autor the autor to set
+     * @param author the author to set
      */
-    public void setAutor(Author autor) {
-        this.autor = autor;
+    public void setAuthor(Author author) {
+        this.author = author;
+    }
+
+    public Publisher getPublisher() {
+        return publisher;
+    }
+
+    public void setPublisher(Publisher publisher) {
+        this.publisher = publisher;
     }
 }
