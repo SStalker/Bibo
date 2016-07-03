@@ -1,0 +1,23 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <title>Bibo - Bücher</title>
+        <!-- Stylesheets -->
+        <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet"></link>
+        <h:outputStylesheet library="css" name="style.css"  />
+        <!-- Javascript -->
+        <script src="https://code.jquery.com/jquery-2.2.3.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+    </h:head>
+    <h:body>
+        <!-- Check if user is logged in -->
+        <f:metadata>
+            <f:viewParam name="authorized" value="#{loginModel.isAuthorized()}"></f:viewParam>
+            <f:viewAction action="#{loginModel.authorized()}" />
+        </f:metadata>
+        <div> TEST </div>
+    </h:body>
+</html>

@@ -6,11 +6,8 @@
 package de.hsos.kbse.bibo.boundary;
 
 import de.hsos.kbse.bibo.controller.MemberController;
-import java.io.IOException;
 import java.io.Serializable;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import javax.enterprise.context.RequestScoped;
+import javax.enterprise.context.SessionScoped;
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
 import javax.inject.Inject;
@@ -21,7 +18,7 @@ import javax.inject.Named;
  * @author rapgrewe
  */
 @Named(value="loginModel")
-@RequestScoped
+@SessionScoped
 public class LoginModel implements Serializable{
     
     //@Inject
@@ -118,5 +115,9 @@ public class LoginModel implements Serializable{
      */
     public void setAuthorized(boolean authorized) {
         this.authorized = authorized;
+    }
+    
+    public boolean isLoggedIn(){
+        return kController.isLoggedIn();
     }
 }
