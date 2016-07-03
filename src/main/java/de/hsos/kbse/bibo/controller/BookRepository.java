@@ -92,4 +92,9 @@ public class BookRepository {
                 
         return results.get(0);
     }
+    
+    public List<Book> findAllBooks(){
+        List<Book> books = em.createQuery("SELECT b FROM Book b").getResultList();
+        return books;
+    }
 }

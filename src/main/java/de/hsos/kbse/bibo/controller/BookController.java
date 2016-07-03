@@ -37,4 +37,8 @@ public class BookController {
     public void showDetailPage(String isbn){
         System.out.println("isbn: " + isbn);
     }
+    
+    public List<Book> findAll(){
+        return repo.findAllBooks();
+    }
 }

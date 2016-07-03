@@ -1,6 +1,7 @@
 <?xml version='1.0' encoding='UTF-8' ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:f="http://xmlns.jcp.org/jsf/core">
     <h:head>
@@ -15,9 +16,32 @@
     <h:body>
         <!-- Check if user is logged in -->
         <f:metadata>
-            <f:viewParam name="authorized" value="#{loginModel.isAuthorized()}"></f:viewParam>
+            <f:viewParam name="authorized" value="#{loginModel.authorized}"></f:viewParam>
             <f:viewAction action="#{loginModel.authorized()}" />
         </f:metadata>
-        <div> TEST </div>
+                <!-- Menu -->
+        <ui:include src="menutemplate.xhtml" />
+        <div class="container-fluid">
+            <h:form>
+                <div class="table-responsive">
+                    <h:dataTable styleClass="table table-hover table-stripped" value="#{searchModel.allBooks}" var="book">
+                        <h:column>    				
+                            <f:facet name="header">Name</f:facet>    				
+                            #{book.title}
+                         </h:column>
+                         <h:column>
+                            <f:facet name="header">Autor</f:facet>
+                            #{book.description.author.lastname}, #{book.description.author.firstname}
+                         </h:column>
+                         <h:column>
+                            <f:facet name="header">Anzahl</f:facet>
+                            #{book.quantity}
+                         </h:column>
+                    </h:dataTable>
+                </div>
+            </h:form>
+        </div>
+        
+        
     </h:body>
 </html>

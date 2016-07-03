@@ -47,4 +47,9 @@ public class SearchModel {
         
         return "/search.xhtml";        
     }
+    
+    public List<Book> getAllBooks(){
+        books = bookController.findAll();        
+        return books;
+    }
 }

@@ -59,7 +59,11 @@ public class LoginModel implements Serializable{
 
     public String authorized(){
         
-        authorized = kController.getMember().getLogin().isLoggedIn();
+        if(kController.getMember() != null && kController.getMember().getLogin() != null){
+            authorized = kController.getMember().getLogin().isLoggedIn();
+        }
+        else 
+            authorized = false;
         
         if(!authorized){
             return "index.html";
@@ -71,7 +75,7 @@ public class LoginModel implements Serializable{
         kController.logoutMember();
         authorized = false;
         FacesContext.getCurrentInstance().getExternalContext().invalidateSession();
-        return "/order.xhtml?faces-redirect=true";
+        return "/index.xhtml?faces-redirect=true";
     }
     /**
      * @return the username

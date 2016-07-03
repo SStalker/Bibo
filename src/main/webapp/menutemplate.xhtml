@@ -13,16 +13,18 @@
                         </button>
                         <a class="navbar-brand" href="index.xhtml">Buchausleihe Bibo</a>
                     </div>
+                    
                     <div class="collapse navbar-collapse">
-                        <ul class="nav navbar-nav">
-                            <li><a href="index.xhtml">Home</a></li>
-                            <li><a href="books.xhtml">Bücher</a></li>
-                            <li> 
-                                <h:form>
-                                <h:commandLink value="Logout" action="#{loginModel.logout()}" rendered="#{loginModel.loggedIn}"></h:commandLink>
-                                </h:form>
-                            </li>
-                        </ul>
+                        <h:form>
+                            <ul class="nav navbar-nav">
+                                <li><a href="index.xhtml">Home</a></li>
+                                <li><a href="books.xhtml">Bücher</a></li>
+                                <li>
+                                        <h:commandLink value="Logout" action="#{loginModel.logout()}" rendered="#{loginModel.loggedIn}"></h:commandLink>
+
+                                </li>
+                            </ul>
+                        </h:form>
                         <div class="col-sm-3 col-md-3 pull-right">
                             <form class="navbar-form" role="search">
                                 <div class="input-group">
