@@ -6,7 +6,10 @@
 package de.hsos.kbse.bibo.boundary;
 
 import de.hsos.kbse.bibo.controller.MemberController;
+import java.io.IOException;
 import java.io.Serializable;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.enterprise.context.RequestScoped;
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
@@ -29,6 +32,8 @@ public class LoginModel implements Serializable{
     
     private String username;
     private String password;
+    
+    private boolean authorized = false;
 
     public LoginModel() {
     }
@@ -42,6 +47,7 @@ public class LoginModel implements Serializable{
         }else if( kController.loginMember(username, password)){
             System.out.println("Jetzt einloggen mit " + username + " und " + password);
             context.getExternalContext().getSessionMap().put("username", username);
+            authorized = true;
             /*if(ordercontroller.isOrderComplete()){
                 return "orderSuccess";
             }else{
@@ -54,8 +60,19 @@ public class LoginModel implements Serializable{
        return "";
     }
 
+    public String authorized(){
+        
+        authorized = kController.getMember().getLogin().isLoggedIn();
+        
+        if(!authorized){
+            return "index.html";
+        }
+        return "";
+    }
+    
     public String logout(){
         kController.logoutMember();
+        authorized = false;
         FacesContext.getCurrentInstance().getExternalContext().invalidateSession();
         return "/order.xhtml?faces-redirect=true";
     }
@@ -85,5 +102,21 @@ public class LoginModel implements Serializable{
      */
     public void setPassword(String password) {
         this.password = password;
-    }           
+    }    
+    
+    /**
+     *
+     * @return
+     */
+    public boolean isAuthorized() {
+        return authorized;
+    }
+
+    /**
+     *
+     * @param authorized
+     */
+    public void setAuthorized(boolean authorized) {
+        this.authorized = authorized;
+    }
 }

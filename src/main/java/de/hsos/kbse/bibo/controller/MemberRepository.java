@@ -10,14 +10,10 @@ import de.hsos.kbse.bibo.entity.Member;
 import java.io.Serializable;
 import java.util.List;
 import javax.enterprise.context.ApplicationScoped;
-import javax.faces.application.FacesMessage;
-import javax.faces.context.FacesContext;
 import javax.inject.Named;
-import javax.persistence.EntityExistsException;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.PersistenceContextType;
-import javax.persistence.PersistenceException;
 import javax.persistence.Query;
 import javax.transaction.Transactional;
 
@@ -46,9 +42,9 @@ public class MemberRepository implements Serializable{
     }
     
     public Member findByName(String name){
-        Query query = em.createNamedQuery("Member.findByName");
-        query.setParameter("username", name);
-        List<Member> results = query.getResultList();
+        
+        List<Member> results;
+        results = em.createQuery("SELECT m FROM Member m WHERE m.login.username LIKE :username").setParameter("username", name).getResultList();
         
         if(results.isEmpty())
             return null;

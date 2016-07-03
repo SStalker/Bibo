@@ -9,7 +9,7 @@ import de.hsos.kbse.bibo.entity.Member;
 import java.io.Serializable;
 import java.sql.SQLException;
 import java.util.Map;
-import javax.enterprise.context.ApplicationScoped;
+import javax.enterprise.context.SessionScoped;
 import javax.faces.context.FacesContext;
 import javax.inject.Inject;
 import javax.transaction.Transactional;
@@ -19,13 +19,13 @@ import javax.validation.executable.ValidateOnExecution;
  *
  * @author sstalker
  */
-@ApplicationScoped
+@SessionScoped
 public class MemberController implements Serializable{
     
     @Inject 
     private MemberRepository repo;
     
-    private Member aktuell;
+    private Member aktuell = null;
     
     @Transactional(value = Transactional.TxType.REQUIRES_NEW,
             rollbackOn = {ValidateOnExecution.class, SQLException.class})
@@ -36,7 +36,7 @@ public class MemberController implements Serializable{
     @Transactional(value = Transactional.TxType.REQUIRES_NEW,
             rollbackOn = {ValidateOnExecution.class, SQLException.class})
     public boolean loginMember(String username, String pass){
-        aktuell = repo.findByName(username);
+        aktuell = repo.findByName(username);    
         if(aktuell != null && aktuell.getLogin().getPassword().equals(pass)){    
             aktuell.getLogin().setLoggedIn(true);
             return true;
@@ -51,6 +51,7 @@ public class MemberController implements Serializable{
         
         return aktuell != null && aktuell.getLogin().isLoggedIn();
     }
+    
     @Transactional(value = Transactional.TxType.REQUIRES_NEW,
             rollbackOn = {ValidateOnExecution.class, SQLException.class})
     public boolean isLoggedIn(){
@@ -115,5 +116,12 @@ public class MemberController implements Serializable{
             rollbackOn = {ValidateOnExecution.class, SQLException.class})
     public void update(){
         repo.update(aktuell);
+    }
+    
+    public boolean authorized(){
+        if(aktuell != null){
+            return false;
+        }
+        else return true;
     }
 }
