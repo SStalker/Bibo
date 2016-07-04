@@ -11,3 +11,29 @@ and open the template in the editor.
 body{
     margin-top: 70px;
 }
+
+.auth-error{
+    display: block;
+    margin-bottom: 10px;
+    font-size: large;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    color: red;
+    text-align: center;
+}
+
+#login-panel, .auth-error, #login-error{
+    max-width: 350px;
+}
+
+#login-error{
+    list-style: none;
+    text-align: center;
+    padding: 0;
+}
+
+#login-form\:register-button{
+    margin-left: 10px;
+}
+
+

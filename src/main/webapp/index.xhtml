@@ -13,6 +13,7 @@
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
         
         <h:outputScript library="js" name="bibo.js" />
+        <h:outputScript library="js" name="error.js" />
         
     </h:head>
     <h:body>
@@ -20,7 +21,7 @@
         <ui:include src="menutemplate.xhtml"/>
         <div class="container-fluid">
             <h:panelGroup layout="block" rendered="#{!loginModel.loggedIn}">
-                <div class="panel panel-default">
+                <div id="login-panel" class="panel panel-default center-block">
                     <div class="panel-heading">Login</div>
                     <div class="panel-body">
                         <h:form id="login-form">
@@ -38,10 +39,14 @@
                         </h:form>
                     </div>
                 </div>
+                <span id="error-out" class="auth-error center-block"></span>
+                <div id="login-error" class="center-block" >
+                    <h:messages  errorStyle="color: red" warnStyle="color: blue" infoStyle="color: red" styleClass="center-block" tooltip="true" />
+                </div>
             </h:panelGroup>
             <h:panelGroup layout="block" rendered="#{loginModel.loggedIn}">
                 <h1>Willkommen bei Bibo</h1>
-                <p>Bibo ist ihre Bibliotheks Software!</p>
+                <p>Bibo ist ihre Bibliotheks-Software!</p>
                 <p>Sie sind Angemeldet</p>
             </h:panelGroup>
         </div>
