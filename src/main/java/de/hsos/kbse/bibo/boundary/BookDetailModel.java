@@ -26,10 +26,7 @@ public class BookDetailModel {
     
     private Book book;
     
-    public String show(){
-        Map<String,String> params = FacesContext.getCurrentInstance().getExternalContext().getRequestParameterMap();
-	
-        String isbn = params.get("isbn");
+    public String show(String isbn ){
         
         System.out.println("Detail Page of: " + isbn);
         

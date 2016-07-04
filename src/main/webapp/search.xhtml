@@ -5,7 +5,7 @@
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:f="http://xmlns.jcp.org/jsf/core">
     <h:head>
-        <title>Buchausleihe Bibo</title>
+        <title>Bibo - Suche</title>
         <!-- Stylesheets -->
         <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet"></link>
         <h:outputStylesheet library="css" name="style.css"  />
@@ -16,51 +16,50 @@
         
     </h:head>
     <h:body>
+        <!-- Check if user is logged in -->
+        <f:metadata>
+            <f:viewParam name="authorized" value="#{loginModel.authorized}"></f:viewParam>
+            <f:viewAction action="#{loginModel.authorized()}" />
+        </f:metadata>
         <!--Menu-->
         <ui:include src="menutemplate.xhtml"/>
         <div class="container-fluid">
             <h1>Suchergebnisse für &raquo;#{searchModel.searchString}&laquo;</h1>
-                       
-            <h:dataTable class="table table-striped" value="#{searchModel.books}" var="book">
-                <h:column>
-                    <f:facet name="header">
-                        <h:outputText value="Titel" />
-                    </f:facet>
-                    <h:outputText value="#{book.title}" />
-                </h:column>
-                
-                <h:column>
-                    <f:facet name="header">
-                        <h:outputText value="Titel" />
-                    </f:facet>
-                    <h:outputText value="#{book.title}" />
-                </h:column>
-                
-                <h:column>
-                    <f:facet name="header">
-                        <h:outputText value="Autor" />
-                    </f:facet>
-                    <h:outputText value="#{book.description.author.firstname} #{book.description.author.lastname}" />
-                </h:column>
-                
-                <h:column>
-                    <f:facet name="header">
-                        <h:outputText value="Verlag" />
-                    </f:facet>
-                    <h:outputText value="#{book.description.publisher.name}" />
-                </h:column>
-                
-                <h:column>
-                    <f:facet name="header">
-                        <h:outputText value="Aktion" />
-                    </f:facet>
-                    <h:form>
-                        <h:commandLink value="Details" class="btn btn-default" action="#{bookDetailModel.show()}">
-                            <f:param name="isbn" value="#{book.isbn}" />
-                        </h:commandLink>
-                    </h:form>
-                </h:column>
-            </h:dataTable>
+            
+            <h:form> 
+                <div class="table-responsive">
+                    <h:dataTable class="table table-hover table-striped" value="#{searchModel.books}" var="book">
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="Titel" />
+                            </f:facet>
+                            <h:outputText value="#{book.title}" />
+                        </h:column>
+
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="Autor" />
+                            </f:facet>
+                            <h:outputText value="#{book.description.author.lastname}, #{book.description.author.firstname}" />
+                        </h:column>
+
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="Verlag" />
+                            </f:facet>
+                            <h:outputText value="#{book.description.publisher.name}" />
+                        </h:column>
+
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="Aktion" />
+                            </f:facet>
+                            <h:commandButton value="Details" styleClass="btn btn-default" action="#{bookDetailModel.show(book.isbn)}">
+                            </h:commandButton>        
+                        </h:column>
+                    </h:dataTable>
+                </div>
+            </h:form>
         </div>
     </h:body>
 </html>

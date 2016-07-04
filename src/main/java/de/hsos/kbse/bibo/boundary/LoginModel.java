@@ -66,6 +66,7 @@ public class LoginModel implements Serializable{
             authorized = false;
         
         if(!authorized){
+            FacesContext.getCurrentInstance().addMessage("auth-form", new FacesMessage("Bitte Einloggen"));
             return "index.html";
         }
         return "";

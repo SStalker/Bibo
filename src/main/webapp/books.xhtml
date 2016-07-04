@@ -25,18 +25,23 @@
             <h:form>
                 <div class="table-responsive">
                     <h:dataTable styleClass="table table-hover table-stripped" value="#{searchModel.allBooks}" var="book">
+
                         <h:column>    				
-                            <f:facet name="header">Name</f:facet>    				
-                            #{book.title}
-                         </h:column>
-                         <h:column>
-                            <f:facet name="header">Autor</f:facet>
-                            #{book.description.author.lastname}, #{book.description.author.firstname}
-                         </h:column>
-                         <h:column>
-                            <f:facet name="header">Anzahl</f:facet>
-                            #{book.quantity}
-                         </h:column>
+                            <f:facet name="header"><h:outputText value="Name" /></f:facet>  
+                            <h:outputText value="#{book.title}" />
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header"><h:outputText value="Autor" /></f:facet>
+                            <h:outputText value="#{book.description.author.lastname}, #{book.description.author.firstname}" />
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header"><h:outputText value="Verlag" /></f:facet>
+                            <h:outputText value="#{book.description.publisher.name}" />
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header"><h:outputText value="Details" /></f:facet>
+                            <h:commandButton value="Details" styleClass="btn btn-default" action="#{bookDetailModel.show(book.isbn)}"></h:commandButton>
+                        </h:column>
                     </h:dataTable>
                 </div>
             </h:form>
