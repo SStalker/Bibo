@@ -6,7 +6,6 @@
 package de.hsos.kbse.bibo.controller;
 
 import de.hsos.kbse.bibo.entity.Book;
-import de.hsos.kbse.bibo.entity.Member;
 import java.sql.SQLException;
 import java.util.List;
 import javax.enterprise.context.ApplicationScoped;
@@ -40,9 +39,5 @@ public class BookController {
     
     public List<Book> findAll(){
         return repo.findAllBooks();
-    }
-    
-    public void borrow(Book book){
-    
     }
 }

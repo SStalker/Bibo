@@ -5,7 +5,6 @@
  */
 package de.hsos.kbse.bibo.controller;
 
-import de.hsos.kbse.bibo.entity.Login;
 import de.hsos.kbse.bibo.entity.Book;
 import java.util.List;
 import javax.enterprise.context.ApplicationScoped;

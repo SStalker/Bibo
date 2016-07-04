@@ -29,15 +29,18 @@ public class Booking implements Serializable{
     
     @OneToOne
     private Member member;
+    
+    @OneToOne
+    private Book book;
 
     public Booking() {
     }
 
-    public Booking(int id, Date bookingFrom, Date bookingTo, Member member) {
-        this.id = id;
+    public Booking(Date bookingFrom, Date bookingTo, Member member, Book book) {
         this.bookingFrom = bookingFrom;
         this.bookingTo = bookingTo;
         this.member = member;
+        this.book = book;
     }
 
     /**
@@ -80,5 +83,19 @@ public class Booking implements Serializable{
      */
     public void setMember(Member member) {
         this.member = member;
+    }
+
+    /**
+     * @return the book
+     */
+    public Book getBook() {
+        return book;
+    }
+
+    /**
+     * @param book the book to set
+     */
+    public void setBook(Book book) {
+        this.book = book;
     }
 }
