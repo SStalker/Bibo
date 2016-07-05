@@ -7,9 +7,8 @@ package de.hsos.kbse.bibo.boundary;
 
 import de.hsos.kbse.bibo.controller.BookController;
 import de.hsos.kbse.bibo.entity.Book;
-import java.util.Map;
-import javax.enterprise.context.RequestScoped;
-import javax.faces.context.FacesContext;
+import java.io.Serializable;
+import javax.enterprise.context.SessionScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
 
@@ -17,9 +16,9 @@ import javax.inject.Named;
  *
  * @author sstalker
  */
-@RequestScoped
+@SessionScoped
 @Named
-public class BookDetailModel {
+public class BookDetailModel implements Serializable{
     
     @Inject
     private BookController bookController;

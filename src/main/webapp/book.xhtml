@@ -3,7 +3,8 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:ui="http://java.sun.com/jsf/facelets"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:f="http://xmlns.jcp.org/jsf/core">
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
     <h:head>
         <title>Buchausleihe Bibo</title>
         <!-- Stylesheets -->
@@ -19,6 +20,7 @@
         <!--Menu-->
         <ui:include src="menutemplate.xhtml"/>
         <div class="container-fluid">
+            <h:messages  errorStyle="color: red" warnStyle="color: blue" infoStyle="color: red" styleClass="center-block" tooltip="true" />
             <div class="row">
                 <div class="col-md-2"></div>
                 <div class="col-md-8">
@@ -36,6 +38,8 @@
                                     <p>#{bookDetailModel.book.description.publisher.name}</p>
                                     <h4>ISBN:</h4>
                                     <p>#{bookDetailModel.book.isbn}</p>
+                                    <h4>Verfügbar:</h4>
+                                    <p>#{bookDetailModel.book.quantity}</p>
                                 </div>
                                 <div class="col-md-9">
                                     #{bookDetailModel.book.description.text}
@@ -44,9 +48,15 @@
                         </div>
                         <div class="panel-footer">
                             <h:form>
-                                <h:commandLink class="btn btn-danger" value="Ausleihen" action="#{bookingModel.borrow()}">
-                                    <f:param name="isbn" value="#{bookDetailModel.book.isbn}"/>
-                                </h:commandLink>
+                                <c:if test="#{bookDetailModel.book.quantity gt 0}">
+                                    <h:commandLink class="btn btn-danger" value="Ausleihen" action="#{bookingModel.borrow()}">
+                                        <f:param name="isbn" value="#{bookDetailModel.book.isbn}"/>
+                                    </h:commandLink>
+                                </c:if>
+                                <c:if test="#{bookDetailModel.book.quantity le 0}">
+                                    <h:commandLink class="btn btn-danger" value="Nicht verfügbar" disabled="true">
+                                    </h:commandLink>
+                                </c:if>
                             </h:form>
                         </div>
                     </div>

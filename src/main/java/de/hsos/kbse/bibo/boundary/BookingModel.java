@@ -11,9 +11,9 @@ import de.hsos.kbse.bibo.controller.MemberController;
 import de.hsos.kbse.bibo.entity.Book;
 import de.hsos.kbse.bibo.entity.Member;
 import java.io.Serializable;
-import java.util.List;
 import java.util.Map;
 import javax.enterprise.context.SessionScoped;
+import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
 import javax.inject.Inject;
 import javax.inject.Named;
@@ -39,18 +39,25 @@ public class BookingModel implements Serializable{
     
     public String borrow(){
         
+        FacesContext context = FacesContext.getCurrentInstance();
         Map<String,String> params = FacesContext.getCurrentInstance().getExternalContext().getRequestParameterMap();
 	
         String isbn = params.get("isbn");
-        System.out.println("++++++++++++++++ISBN: " + isbn + "+++++++++++++++++++++++++++++++");
         Book book = bookController.findBookByISBN(isbn);
         
         if(book != null){
+
+            if(book.getQuantity() <= 0){
+                context.addMessage("error", new FacesMessage("Buch nicht mehr verfügbar"));
+                return "/book.xhtml";
+            }
+
             Member current = memberController.getMember();
             System.out.println(current.getLogin().getUsername() + " möchte das Buch " + book.getTitle() + " ausleihen");
             
             bookingController.borrow(current, book);
-      //      borrowedBooks.add(book);
+            book.setQuantity(book.getQuantity()-1);
+            bookController.updateBook(book);
             
             return "/index.xhtml";
         } 
