@@ -6,7 +6,9 @@
 package de.hsos.kbse.bibo.controller;
 
 import de.hsos.kbse.bibo.entity.Book;
+import de.hsos.kbse.bibo.entity.Booking;
 import de.hsos.kbse.bibo.entity.Member;
+import java.util.List;
 import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;
 
@@ -26,5 +28,9 @@ public class BookingController {
 
     public boolean hasBorrowed(Member current, Book book) {
         return repo.hasBorrowed(current, book);
+    }
+    
+    public List<Booking> borrowed(Member member){
+        return repo.borrowedByMember(member);
     }
 }

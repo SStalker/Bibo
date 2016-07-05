@@ -72,4 +72,8 @@ public class BookingRepository {
 
         return results.size() > 0;
     }
+    
+    public List<Booking> borrowedByMember(Member member){
+        return em.createQuery("SELECT bk FROM Booking bk WHERE bk.member = :memberid").setParameter("memberid", member).getResultList();
+    }
 }

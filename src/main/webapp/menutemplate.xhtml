@@ -21,7 +21,10 @@
                             <li><a href="index.xhtml">Home</a></li>
                             <li><a href="books.xhtml">Bücher</a></li>
                             <li>
-                                <h:commandLink value="Logout" action="#{loginModel.logout()}" rendered="#{loginModel.loggedIn}"></h:commandLink>
+                                <h:commandLink value="Ausgeliehen" action="borrowed.xhtml" rendered="#{loginModel.loggedIn}" />
+                            </li>
+                            <li>
+                                <h:commandLink value="Logout" action="#{loginModel.logout()}" rendered="#{loginModel.loggedIn}"/>
                             </li>
                         </ul>
                     </h:form>
