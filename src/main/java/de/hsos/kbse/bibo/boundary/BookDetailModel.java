@@ -8,7 +8,7 @@ package de.hsos.kbse.bibo.boundary;
 import de.hsos.kbse.bibo.controller.BookController;
 import de.hsos.kbse.bibo.entity.Book;
 import java.io.Serializable;
-import javax.enterprise.context.SessionScoped;
+import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
 
@@ -16,20 +16,18 @@ import javax.inject.Named;
  *
  * @author sstalker
  */
-@SessionScoped
+@RequestScoped
 @Named
 public class BookDetailModel implements Serializable{
     
     @Inject
     private BookController bookController;
     
-    private Book book;
-    
     public String show(String isbn ){
         
         System.out.println("Detail Page of: " + isbn);
         
-        book = bookController.findBookByISBN(isbn);
+        bookController.setDetailedBook(bookController.findBookByISBN(isbn));
         
         return "/book.xhtml";
     }
@@ -38,6 +36,6 @@ public class BookDetailModel implements Serializable{
      * @return the book
      */
     public Book getBook() {
-        return book;
+        return bookController.getDetailedBook();
     }
 }

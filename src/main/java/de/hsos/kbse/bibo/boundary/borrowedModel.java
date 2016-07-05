@@ -5,12 +5,11 @@
  */
 package de.hsos.kbse.bibo.boundary;
 
+import de.hsos.kbse.bibo.controller.BookController;
 import de.hsos.kbse.bibo.controller.BookingController;
 import de.hsos.kbse.bibo.controller.MemberController;
-import de.hsos.kbse.bibo.entity.Book;
 import de.hsos.kbse.bibo.entity.Booking;
 import java.util.List;
-import javax.annotation.PostConstruct;
 import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
@@ -28,6 +27,9 @@ public class borrowedModel {
     
     @Inject 
     private MemberController memberController;
+    
+    @Inject 
+    private BookController bookController;
 
     public borrowedModel() {
     
@@ -54,5 +56,15 @@ public class borrowedModel {
         
         return !borrowedBooks.isEmpty();
     }
+    
+        public String show(String isbn ){
+        
+        System.out.println("Detail Page of: " + isbn);
+        
+        bookController.setDetailedBook(bookController.findBookByISBN(isbn));
+        
+        return "/book.xhtml";
+    }
+
     
 }

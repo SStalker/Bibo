@@ -12,6 +12,7 @@ import de.hsos.kbse.bibo.entity.Book;
 import de.hsos.kbse.bibo.entity.Member;
 import java.io.Serializable;
 import java.util.Map;
+import javax.enterprise.context.RequestScoped;
 import javax.enterprise.context.SessionScoped;
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
@@ -23,7 +24,7 @@ import javax.inject.Named;
  * @author rapgrewe
  */
 @Named
-@SessionScoped
+@RequestScoped
 public class BookingModel implements Serializable{
     
     @Inject

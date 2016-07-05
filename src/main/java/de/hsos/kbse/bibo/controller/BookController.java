@@ -22,6 +22,8 @@ public class BookController {
     
     @Inject 
     private BookRepository repo;
+    
+    private Book detailedBook; 
            
     @Transactional(value = Transactional.TxType.REQUIRES_NEW,
             rollbackOn = {ValidateOnExecution.class, SQLException.class})
@@ -44,4 +46,14 @@ public class BookController {
     public void updateBook(Book book){
         repo.update(book);
     }
+
+    public Book getDetailedBook() {
+        return detailedBook;
+    }
+
+    public void setDetailedBook(Book detailedBook) {
+        this.detailedBook = detailedBook;
+    }
+    
+    
 }

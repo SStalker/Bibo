@@ -17,51 +17,61 @@
         
     </h:head>
     <h:body>
+        <!-- Check if user is logged in -->
+        <f:metadata>
+            <f:viewParam name="authorized" value="#{loginModel.authorized}"></f:viewParam>
+            <f:viewAction action="#{loginModel.authorized()}" />
+        </f:metadata>
         <!--Menu-->
         <ui:include src="menutemplate.xhtml"/>
         <div class="container-fluid">
-            <h:messages  errorStyle="color: red" warnStyle="color: blue" infoStyle="color: red" styleClass="center-block" tooltip="true" />
-            <div class="row">
-                <div class="col-md-2"></div>
-                <div class="col-md-8">
-                    <div class="panel panel-primary">
-                        <div class="panel-heading">
-                            <h2 class="">#{bookDetailModel.book.title}</h2>
-                            
-                        </div>
-                        <div class="panel-body">
-                            <div class="row">
-                                <div class="col-md-3">
-                                    <h4>Autor:</h4>
-                                    <p>#{bookDetailModel.book.description.author.firstname} #{bookDetailModel.book.description.author.lastname}</p>
-                                    <h4>Verlag:</h4>
-                                    <p>#{bookDetailModel.book.description.publisher.name}</p>
-                                    <h4>ISBN:</h4>
-                                    <p>#{bookDetailModel.book.isbn}</p>
-                                    <h4>Verfügbar:</h4>
-                                    <p>#{bookDetailModel.book.quantity}</p>
-                                </div>
-                                <div class="col-md-9">
-                                    #{bookDetailModel.book.description.text}
+            <h:panelGroup layout="block" rendered="#{bookDetailModel.book != null}">
+                <h:messages  errorStyle="color: red" warnStyle="color: blue" infoStyle="color: red" styleClass="center-block" tooltip="true" />
+                <div class="row">
+                    <div class="col-md-2"></div>
+                    <div class="col-md-8">
+                        <div class="panel panel-primary">
+                            <div class="panel-heading">
+                                <h2 class="">#{bookDetailModel.book.title}</h2>
+
+                            </div>
+                            <div class="panel-body">
+                                <div class="row">
+                                    <div class="col-md-3">
+                                        <h4>Autor:</h4>
+                                        <p>#{bookDetailModel.book.description.author.firstname} #{bookDetailModel.book.description.author.lastname}</p>
+                                        <h4>Verlag:</h4>
+                                        <p>#{bookDetailModel.book.description.publisher.name}</p>
+                                        <h4>ISBN:</h4>
+                                        <p>#{bookDetailModel.book.isbn}</p>
+                                        <h4>Verfügbar:</h4>
+                                        <p>#{bookDetailModel.book.quantity}</p>
+                                    </div>
+                                    <div class="col-md-9">
+                                        #{bookDetailModel.book.description.text}
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                        <div class="panel-footer">
-                            <h:form>
-                                <c:if test="#{bookDetailModel.book.quantity gt 0}">
-                                    <h:commandLink class="btn btn-danger" value="Ausleihen" action="#{bookingModel.borrow()}">
-                                        <f:param name="isbn" value="#{bookDetailModel.book.isbn}"/>
-                                    </h:commandLink>
-                                </c:if>
-                                <c:if test="#{bookDetailModel.book.quantity le 0}">
-                                    <h:commandLink class="btn btn-danger" value="Nicht verfügbar" disabled="true">
-                                    </h:commandLink>
-                                </c:if>
-                            </h:form>
+                            <div class="panel-footer">
+                                <h:form>
+                                    <c:if test="#{bookDetailModel.book.quantity gt 0}">
+                                        <h:commandLink class="btn btn-danger" value="Ausleihen" action="#{bookingModel.borrow()}">
+                                            <f:param name="isbn" value="#{bookDetailModel.book.isbn}"/>
+                                        </h:commandLink>
+                                    </c:if>
+                                    <c:if test="#{bookDetailModel.book.quantity le 0}">
+                                        <h:commandLink class="btn btn-danger" value="Nicht verfügbar" disabled="true">
+                                        </h:commandLink>
+                                    </c:if>
+                                </h:form>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
+            </h:panelGroup>
+            <h:panelGroup layout="block" rendered="#{bookDetailModel.book == null}">
+                <p>Kein Buch ausgewählt</p>
+            </h:panelGroup>
         </div>
     </h:body>
 </html>

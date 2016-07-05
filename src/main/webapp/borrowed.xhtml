@@ -12,6 +12,7 @@
         <!-- Javascript -->
         <script src="https://code.jquery.com/jquery-2.2.3.min.js"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+        <h:outputScript library="js" name="bibo.js" />
     </h:head>
     <h:body>
         <!-- Check if user is logged in -->
@@ -30,7 +31,7 @@
             </div>
             <h:form>
                 <div class="table-responsive">
-                    <h:dataTable styleClass="table table-hover table-stripped" value="#{borrowedModel.borrowedBooks()}" rendered="#{borrowedModel.booksBorrowed()}" var="booking">
+                    <h:dataTable styleClass="table table-hover table-stripped" value="#{borrowedModel.borrowedBooks}" rendered="#{borrowedModel.booksBorrowed()}" var="booking">
 
                         <h:column>    				
                             <f:facet name="header"><h:outputText value="Name" /></f:facet>  
@@ -38,16 +39,21 @@
                         </h:column>
                         <h:column>
                             <f:facet name="header"><h:outputText value="Von" /></f:facet>
-                            <h:outputText value="#{booking.bookingFrom}" />
+                            <h:outputText value="#{booking.bookingFrom.toGMTString()}" />
                         </h:column>
                         <h:column>
                             <f:facet name="header"><h:outputText value="Bis" /></f:facet>
-                            <h:outputText value="#{booking.bookingTo}" />
+                            <h:outputText value="#{booking.bookingTo.toGMTString()}" />
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header"><h:outputText value="Details" /></f:facet>
+                            <h:commandButton value="Details" styleClass="btn btn-default" action="#{borrowedModel.show(booking.book.isbn)}" ></h:commandButton>
                         </h:column>
                         <h:column>
                             <f:facet name="header"><h:outputText value="Rückgabe" /></f:facet>
                             <h:commandButton value="Rückgabe" styleClass="btn btn-default" ></h:commandButton>
                         </h:column>
+                        
                     </h:dataTable>
                 </div>
             </h:form>
