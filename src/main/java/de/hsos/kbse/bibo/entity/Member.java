@@ -13,7 +13,6 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToOne;
-import javax.persistence.Table;
 
 /**
  *
@@ -21,7 +20,6 @@ import javax.persistence.Table;
  */
 @Entity
 @Dependent
-//@Table(name = "T_MEMBER")
 public class Member implements Serializable{
     
     @Id
@@ -57,5 +55,19 @@ public class Member implements Serializable{
 
     public void setLogin(Login login) {
         this.login = login;
+    }
+
+    /**
+     * @return the id
+     */
+    public int getId() {
+        return id;
+    }
+
+    /**
+     * @param id the id to set
+     */
+    public void setId(int id) {
+        this.id = id;
     }
 }

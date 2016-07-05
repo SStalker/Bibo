@@ -53,6 +53,12 @@ public class BookingModel implements Serializable{
             }
 
             Member current = memberController.getMember();
+
+            if(bookingController.hasBorrowed(current, book)){
+                context.addMessage("error", new FacesMessage("Buch bereits ausgeliehen"));
+                return "/book.xhtml";
+            }
+
             System.out.println(current.getLogin().getUsername() + " möchte das Buch " + book.getTitle() + " ausleihen");
             
             bookingController.borrow(current, book);

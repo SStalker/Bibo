@@ -24,4 +24,7 @@ public class BookingController {
         repo.borrow(member, book);
     }
 
+    public boolean hasBorrowed(Member current, Book book) {
+        return repo.hasBorrowed(current, book);
+    }
 }
