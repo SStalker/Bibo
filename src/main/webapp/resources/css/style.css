@@ -30,6 +30,18 @@ body{
     padding: 0;
 }
 
+.welcome{
+    text-align: center;
+}
+
+.register-container h1{
+    text-align: center;
+}
+
+.register-container #register-form .row{
+    max-width: 1200px;
+}
+
 #login-panel, .auth-error, #login-error{
     max-width: 350px;
 }
