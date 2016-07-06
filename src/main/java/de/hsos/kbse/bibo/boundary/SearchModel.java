@@ -44,7 +44,7 @@ public class SearchModel implements Serializable{
         System.out.println("Search for: " + searchString);
         books = bookController.searchForBook(searchString);
         
-        return "/search.xhtml";        
+        return "search";        
     }
     
     public List<Book> getAllBooks(){

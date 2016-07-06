@@ -13,7 +13,6 @@ import de.hsos.kbse.bibo.entity.Member;
 import java.io.Serializable;
 import java.util.Map;
 import javax.enterprise.context.RequestScoped;
-import javax.enterprise.context.SessionScoped;
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
 import javax.inject.Inject;
@@ -50,14 +49,14 @@ public class BookingModel implements Serializable{
 
             if(book.getQuantity() <= 0){
                 context.addMessage("error", new FacesMessage("Buch nicht mehr verfügbar"));
-                return "/book.xhtml";
+                return "book";
             }
 
             Member current = memberController.getMember();
 
             if(bookingController.hasBorrowed(current, book)){
                 context.addMessage("error", new FacesMessage("Buch bereits ausgeliehen"));
-                return "/book.xhtml";
+                return "book";
             }
 
             System.out.println(current.getLogin().getUsername() + " möchte das Buch " + book.getTitle() + " ausleihen");
@@ -66,9 +65,9 @@ public class BookingModel implements Serializable{
             book.setQuantity(book.getQuantity()-1);
             bookController.updateBook(book);
             
-            return "/index.xhtml";
+            return "home";
         } 
         
-        return "/index.xhtml";        
+        return "home";        
     }    
 }

@@ -67,7 +67,7 @@ public class LoginModel implements Serializable{
         
         if(!authorized){
             FacesContext.getCurrentInstance().addMessage("auth-form", new FacesMessage("Bitte Einloggen"));
-            return "index.html";
+            return "home";
         }
         return "";
     }
@@ -76,7 +76,7 @@ public class LoginModel implements Serializable{
         kController.logoutMember();
         authorized = false;
         FacesContext.getCurrentInstance().getExternalContext().invalidateSession();
-        return "/index.xhtml?faces-redirect=true";
+        return "home";
     }
     /**
      * @return the username
@@ -122,6 +122,10 @@ public class LoginModel implements Serializable{
         this.authorized = authorized;
     }
     
+    /**
+     *
+     * @return
+     */
     public boolean isLoggedIn(){
         return kController.isLoggedIn();
     }

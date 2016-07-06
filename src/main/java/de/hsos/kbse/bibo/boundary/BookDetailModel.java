@@ -29,7 +29,7 @@ public class BookDetailModel implements Serializable{
         
         bookController.setDetailedBook(bookController.findBookByISBN(isbn));
         
-        return "/book.xhtml";
+        return "book";
     }
 
     /**

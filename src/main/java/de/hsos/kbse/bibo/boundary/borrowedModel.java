@@ -65,7 +65,7 @@ public class borrowedModel {
         
         bookController.setDetailedBook(bookController.findBookByISBN(isbn));
         
-        return "/book.xhtml";
+        return "book";
     }
 
     public String returnBook(Book book){
@@ -77,7 +77,7 @@ public class borrowedModel {
 
         System.out.println("Rückgabe Buch: " + book.getIsbn());
 
-        return "/index.xhtml";
+        return "home";
     }
     
     public boolean hasBookBorrowed(Book book){

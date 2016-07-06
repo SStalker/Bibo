@@ -17,10 +17,14 @@
                 <div class="collapse navbar-collapse">
                     <h:form>
                         <ul class="nav navbar-nav">
-                            <li><a href="index.xhtml">Home</a></li>
-                            <li><a href="books.xhtml">Bücher</a></li>
                             <li>
-                                <h:commandLink value="Ausgeliehen" action="borrowed.xhtml" rendered="#{loginModel.loggedIn}" />
+                                <h:commandLink value="Home" action="home" />
+                            </li>
+                            <li>
+                                <h:commandLink value="Bücher" action="books" />
+                            </li>
+                            <li>
+                                <h:commandLink value="Ausgeliehen" action="borrowed" rendered="#{loginModel.loggedIn}" />
                             </li>
                             <li>
                                 <h:commandLink value="Logout" action="#{loginModel.logout()}" rendered="#{loginModel.loggedIn}"/>
