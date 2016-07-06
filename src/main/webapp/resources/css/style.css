@@ -42,6 +42,10 @@ body{
     max-width: 1200px;
 }
 
+.navbar-form{
+    border: none;
+}
+
 #login-panel, .auth-error, #login-error{
     max-width: 350px;
 }
