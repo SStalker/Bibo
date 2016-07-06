@@ -6,9 +6,13 @@
 package de.hsos.kbse.bibo.boundary;
 
 import de.hsos.kbse.bibo.controller.BookController;
+import de.hsos.kbse.bibo.controller.MemberController;
 import de.hsos.kbse.bibo.entity.Book;
 import java.io.Serializable;
 import java.util.List;
+import javax.annotation.PostConstruct;
+import javax.enterprise.context.Conversation;
+import javax.enterprise.context.ConversationScoped;
 import javax.enterprise.context.SessionScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
@@ -17,9 +21,15 @@ import javax.inject.Named;
  *
  * @author sstalker
  */
-@SessionScoped
+@ConversationScoped
 @Named
 public class SearchModel implements Serializable{
+    
+    @Inject
+    private Conversation conversation;
+    
+    @Inject
+    private MemberController memberController;
     
     @Inject
     private BookController bookController;
@@ -28,6 +38,20 @@ public class SearchModel implements Serializable{
     
     private String searchString;
 
+    public String beginnConversation(){
+        if(conversation.isTransient() && memberController.isLoggedIn()){
+            conversation.begin();
+            System.out.println("################### Conversation->begin #################");
+            return "home";
+        }else{
+            return "";
+        }
+    }
+    
+    public void endConversation(){
+        conversation.end();
+    } 
+    
     public String getSearchString() {
         return searchString;
     }

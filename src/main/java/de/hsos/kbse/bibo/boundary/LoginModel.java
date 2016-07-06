@@ -35,12 +35,11 @@ public class LoginModel implements Serializable{
     public LoginModel() {
     }
            
-    public String login(){
+    public void login(){
         FacesContext context = FacesContext.getCurrentInstance();
         
         if(kController.isLoggedIn(username) ){
             context.addMessage("error", new FacesMessage("Bereits eingeloggt"));
-            return "";
         }else if( kController.loginMember(username, password)){
             System.out.println("Jetzt einloggen mit " + username + " und " + password);
             context.getExternalContext().getSessionMap().put("username", username);
@@ -52,9 +51,7 @@ public class LoginModel implements Serializable{
             }*/
         } else {
             FacesContext.getCurrentInstance().addMessage("error", new FacesMessage("Username und/oder Passwort sind falsch!"));
-            return "";
         }
-       return "";
     }
 
     public String authorized(){
