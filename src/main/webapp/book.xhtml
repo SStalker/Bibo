@@ -26,7 +26,6 @@
         <ui:include src="menutemplate.xhtml"/>
         <div class="container-fluid">
             <h:panelGroup layout="block" rendered="#{bookDetailModel.book != null}">
-                <h:messages  errorStyle="color: red" warnStyle="color: blue" infoStyle="color: red" styleClass="center-block" tooltip="true" />
                 <div class="row">
                     <div class="col-md-2"></div>
                     <div class="col-md-8">
@@ -52,23 +51,27 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="panel-footer">
-                                <h:form>
-                                    <c:if test="#{borrowedModel.hasBookBorrowed(bookDetailModel.book)}" >
-                                        <h:commandButton value="Rückgabe" styleClass="btn btn-default" action="#{borrowedModel.returnBook(bookDetailModel.book)}" ></h:commandButton>
-                                    </c:if>
-                                    <c:if test="#{!borrowedModel.hasBookBorrowed(bookDetailModel.book)}" >
-                                        <c:if test="#{bookDetailModel.book.quantity gt 0}">
-                                            <h:commandLink class="btn btn-danger" value="Ausleihen" action="#{bookingModel.borrow()}">
-                                                <f:param name="isbn" value="#{bookDetailModel.book.isbn}"/>
-                                            </h:commandLink>
+                            <div id="booking-footer" class="panel-footer row">
+                                <h:panelGroup layout="block" class="col-sm-12 col-md-1" >
+                                    <h:form id="booking-form">
+                                        <c:if test="#{bookDetailModel.hasBookBorrowed(bookDetailModel.book)}" >
+                                            <h:commandButton value="Rückgabe" styleClass="btn btn-default" action="#{bookDetailModel.returnBook(bookDetailModel.book)}" ></h:commandButton>
                                         </c:if>
-                                        <c:if test="#{bookDetailModel.book.quantity le 0}">
-                                            <h:commandLink class="btn btn-danger" value="Nicht verfügbar" disabled="true">
-                                            </h:commandLink>
+                                        <c:if test="#{!bookDetailModel.hasBookBorrowed(bookDetailModel.book)}" >
+                                            <c:if test="#{bookDetailModel.book.quantity gt 0}">
+                                                <h:commandLink class="btn btn-danger" value="Ausleihen" action="#{bookDetailModel.borrow()}">
+                                                </h:commandLink>
+                                            </c:if>
+                                            <c:if test="#{bookDetailModel.book.quantity le 0}">
+                                                <h:commandLink class="btn btn-danger" value="Nicht verfügbar" disabled="true">
+                                                </h:commandLink>
+                                            </c:if>
                                         </c:if>
-                                    </c:if>
-                                </h:form>
+                                    </h:form>
+                                </h:panelGroup>
+                                <h:panelGroup layout="block" class=" col-sm-12 col-md-11 ">
+                                    <h:messages  errorStyle="color: red" warnStyle="color: blue" infoStyle="color: green" styleClass="booking-error center-block" tooltip="true" />
+                                </h:panelGroup>
                             </div>
                         </div>
                     </div>

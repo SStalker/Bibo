@@ -19,32 +19,16 @@ import javax.inject.Named;
  */
 @SessionScoped
 @Named
-public class SearchModel implements Serializable{
+public class BooksModel implements Serializable{
     
     @Inject
     private BookController bookController;
     
     private List<Book> books;
     
-    private String searchString;
-
-    public String getSearchString() {
-        return searchString;
-    }
-
-    public void setSearchString(String searchString) {
-        this.searchString = searchString;
-    }
-
-    public List<Book> getBooks() {
+    public List<Book> getAllBooks(){
+        books = bookController.findAll();        
         return books;
-    }
-    
-    public String search(){
-        System.out.println("Search for: " + searchString);
-        books = bookController.searchForBook(searchString);
-        
-        return "search";        
     }
     
     public String show(String isbn ){

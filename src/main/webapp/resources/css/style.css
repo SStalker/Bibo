@@ -12,14 +12,22 @@ body{
     margin-top: 70px;
 }
 
-.auth-error{
+.auth-error, .booking-error{
     display: block;
     margin-bottom: 10px;
     font-size: large;
+    text-align: center;
+}
+
+.auth-error{
     border: 1px solid #ddd;
     border-radius: 4px;
     color: red;
-    text-align: center;
+}
+
+.booking-error{
+    list-style: none;
+    padding: 0;
 }
 
 #login-panel, .auth-error, #login-error{
@@ -36,4 +44,11 @@ body{
     margin-left: 10px;
 }
 
+#hiddenForm{
+    display: none;
+}
 
+#booking-footer{
+    margin-left: 0;
+    margin-right: 0;
+}

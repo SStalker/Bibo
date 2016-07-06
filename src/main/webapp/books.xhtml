@@ -25,7 +25,7 @@
         <div class="container-fluid">
             <h:form>
                 <div class="table-responsive">
-                    <h:dataTable styleClass="table table-hover table-stripped" value="#{searchModel.allBooks}" var="book">
+                    <h:dataTable styleClass="table table-hover table-stripped" value="#{booksModel.allBooks}" var="book">
 
                         <h:column>    				
                             <f:facet name="header"><h:outputText value="Name" /></f:facet>  
@@ -41,7 +41,7 @@
                         </h:column>
                         <h:column>
                             <f:facet name="header"><h:outputText value="Details" /></f:facet>
-                            <h:commandButton value="Details" styleClass="btn btn-default" action="#{bookDetailModel.show(book.isbn)}"></h:commandButton>
+                            <h:commandButton value="Details" styleClass="btn btn-default" action="#{booksModel.show(book.isbn)}"></h:commandButton>
                         </h:column>
                     </h:dataTable>
                 </div>
