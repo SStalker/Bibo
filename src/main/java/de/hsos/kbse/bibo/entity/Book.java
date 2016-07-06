@@ -28,7 +28,7 @@ public class Book implements Serializable{
     @NotNull
     private String isbn;
     
-    @Size(min = 6, max = 32)
+    @Size(min = 6, max = 64)
     private String title;
     
     private int quantity;
