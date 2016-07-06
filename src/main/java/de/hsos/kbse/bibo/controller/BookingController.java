@@ -33,4 +33,9 @@ public class BookingController {
     public List<Booking> borrowed(Member member){
         return repo.borrowedByMember(member);
     }
+
+    public void removeBooking(Member member, Book book){
+        Booking booking = repo.findByMemberAndBook(member, book);
+        repo.delete(booking.getId());
+    }
 }

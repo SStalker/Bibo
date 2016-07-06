@@ -8,7 +8,9 @@ package de.hsos.kbse.bibo.boundary;
 import de.hsos.kbse.bibo.controller.BookController;
 import de.hsos.kbse.bibo.controller.BookingController;
 import de.hsos.kbse.bibo.controller.MemberController;
+import de.hsos.kbse.bibo.entity.Book;
 import de.hsos.kbse.bibo.entity.Booking;
+import de.hsos.kbse.bibo.entity.Member;
 import java.util.List;
 import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
@@ -57,7 +59,7 @@ public class borrowedModel {
         return !borrowedBooks.isEmpty();
     }
     
-        public String show(String isbn ){
+    public String show(String isbn){
         
         System.out.println("Detail Page of: " + isbn);
         
@@ -66,5 +68,21 @@ public class borrowedModel {
         return "/book.xhtml";
     }
 
+    public String returnBook(Book book){
+
+        Member member = memberController.getMember();
+        bookingController.removeBooking(member, book);
+        book.setQuantity(book.getQuantity()+1);
+        bookController.updateBook(book);
+
+        System.out.println("Rückgabe Buch: " + book.getIsbn());
+
+        return "/index.xhtml";
+    }
     
+    public boolean hasBookBorrowed(Book book){
+        Member member = memberController.getMember();
+
+        return bookingController.hasBorrowed(member, book);
+    }
 }

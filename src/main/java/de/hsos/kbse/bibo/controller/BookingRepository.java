@@ -47,7 +47,20 @@ public class BookingRepository {
     
     public Booking findById(int uid){
         return em.find(Booking.class, uid);        
-    }   
+    }
+
+    public Booking findByMemberAndBook(Member member, Book book){
+        Query query = em.createQuery(""
+                    + "SELECT b FROM Booking b "
+                    + "WHERE b.book.isbn = :isbn "
+                    + "AND b.member.id = :id");
+            query.setParameter("isbn", book.getIsbn());
+            query.setParameter("id", member.getId());
+
+            List<Booking> results = query.getResultList();
+
+        return results.size() > 0 ? results.get(0) : null;
+    }
 
     void borrow(Member member, Book book) {
         Date bookingFrom = new Date();
@@ -68,7 +81,7 @@ public class BookingRepository {
             query.setParameter("isbn", book.getIsbn());
             query.setParameter("id", member.getId());
 
-            List<Book> results = query.getResultList();
+            List<Booking> results = query.getResultList();
 
         return results.size() > 0;
     }

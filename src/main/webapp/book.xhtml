@@ -54,14 +54,19 @@
                             </div>
                             <div class="panel-footer">
                                 <h:form>
-                                    <c:if test="#{bookDetailModel.book.quantity gt 0}">
-                                        <h:commandLink class="btn btn-danger" value="Ausleihen" action="#{bookingModel.borrow()}">
-                                            <f:param name="isbn" value="#{bookDetailModel.book.isbn}"/>
-                                        </h:commandLink>
+                                    <c:if test="#{borrowedModel.hasBookBorrowed(bookDetailModel.book)}" >
+                                        <h:commandButton value="Rückgabe" styleClass="btn btn-default" action="#{borrowedModel.returnBook(bookDetailModel.book)}" ></h:commandButton>
                                     </c:if>
-                                    <c:if test="#{bookDetailModel.book.quantity le 0}">
-                                        <h:commandLink class="btn btn-danger" value="Nicht verfügbar" disabled="true">
-                                        </h:commandLink>
+                                    <c:if test="#{!borrowedModel.hasBookBorrowed(bookDetailModel.book)}" >
+                                        <c:if test="#{bookDetailModel.book.quantity gt 0}">
+                                            <h:commandLink class="btn btn-danger" value="Ausleihen" action="#{bookingModel.borrow()}">
+                                                <f:param name="isbn" value="#{bookDetailModel.book.isbn}"/>
+                                            </h:commandLink>
+                                        </c:if>
+                                        <c:if test="#{bookDetailModel.book.quantity le 0}">
+                                            <h:commandLink class="btn btn-danger" value="Nicht verfügbar" disabled="true">
+                                            </h:commandLink>
+                                        </c:if>
                                     </c:if>
                                 </h:form>
                             </div>

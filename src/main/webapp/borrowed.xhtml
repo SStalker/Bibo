@@ -51,7 +51,7 @@
                         </h:column>
                         <h:column>
                             <f:facet name="header"><h:outputText value="Rückgabe" /></f:facet>
-                            <h:commandButton value="Rückgabe" styleClass="btn btn-default" ></h:commandButton>
+                            <h:commandButton value="Rückgabe" styleClass="btn btn-default" action="#{borrowedModel.returnBook(booking.book)}" ></h:commandButton>
                         </h:column>
                         
                     </h:dataTable>
